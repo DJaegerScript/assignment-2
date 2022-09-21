@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 1,
+        "fields": {
+            "title": "Iron Man",
+            "rating": 3.9,
+            "review": "The first. It still holds up 13 years after release. The I am Iron Man ending is fantastic of course, as is the acting, the plot, and everything else, I don't really have much to say except for the fact that the movie was great",
+            "release_date": "2008-05-02",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 2,
+        "fields": {
+            "title": "The Incredible Hulk",
+            "rating": 3.3,
+            "review": "It may still be uneven with a messy structure, but this MCU version is still much better than the other previous attempts. It's a good popcorn flick and puts more emphasis on the effects and action over everything else.",
+            "release_date": "2008-06-13",
+            "watched": false
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 3,
+        "fields": {
+            "title": "Iron Man 2",
+            "rating": 3.5,
+            "review": "It isn't as good as the original but Iron Man 2 is still a really good sequel. Robert Downey Jr. once again gives an incredible performance and is extremely charismatic. Gwyneth Paltrow, Don Cheadle, Scarlett Johansson, Samuel L. Jackson and Sam Rockwell all give great performances. Jon Favreau's direction is really good and it's consistently funny. The CG is impressive and the music by John Denney is good. However, Mickey Rourke is wasted as a forgettable villain and the final battle is a little short.",
+            "release_date": "2010-05-07",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 4,
+        "fields": {
+            "title": "Thor",
+            "rating": 3.5,
+            "review": "Thor is a film that takes risks - and they pay off wonderfully. The movie grounds itself in reality while keeping a mythological and fantasy-esqe tone, and it never loses sight of the humanity within the characters, with elevates this above standard superhero fare.",
+            "release_date": "2011-05-06",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 5,
+        "fields": {
+            "title": "Captain America: The First Avenger",
+            "rating": 3.5,
+            "review": "It wasn't that bad of a movie, but undoubtedly it had a few flaws in terms of screenplay. The story itself was fine, and I'm personally a big fan of Captain America's origin story so this movie was a nice watch for me. Maybe not so much if you don't care at all about superheroes such as CA.",
+            "release_date": "2011-06-22",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 6,
+        "fields": {
+            "title": "The Avengers",
+            "rating": 4.0,
+            "review": "Up until this point, nothing had been done like this in film and it was executed magnificently. The casting and chemistry between them is on point, the villain is compelling and gets under your skin in the best way, and Robert Downey Jr.'s humor all around is unforgettable, and how can I not mention that glorifying theme song??",
+            "release_date": "2012-05-04",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 7,
+        "fields": {
+            "title": "Iron Man 3",
+            "rating": 3.5,
+            "review": "It was an out and out outstanding film. The story and screenplay was great. The actions scenes with the use of CGI and visual effects was extraordinary. The performances by the cast especially Robert Downey Jr was excellent. Definitely needs to be watched by all superhero movie lovers.",
+            "release_date": "2013-05-03",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 8,
+        "fields": {
+            "title": "Thor: The Dark World",
+            "rating": 3.4,
+            "review": "It's a good movie. Like that Natalie Portman was still in it. Too bad she wasn't in Thor Ragnarok. The bad was they tried to go funny at parts. It wasn't very funny.",
+            "release_date": "2013-11-08",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 9,
+        "fields": {
+            "title": "Captain America: The Winter Soldier",
+            "rating": 3.9,
+            "review": "Captain America The Winter Soldier is a great movie, well directed, with awsome action sequences and always gripping. It boasts of a talented cast and it is even better than its predecessor. With an effective mix of thrilling action, humor, intrigue, and surprising heart, it is another great addition to the Infinity Saga.",
+            "release_date": "2014-04-04",
+            "watched": true
+        }
+    },
+    {
+        "model": "mywatchlist.watchlistitem",
+        "pk": 10,
+        "fields": {
+            "title": "Guardian of the Galaxy",
+            "rating": 4.0,
+            "review": "One of the funniest Marvel films is a comedy movie with distinction. A simple story. All the heroes of the film were excellent, especially Drax, Rocket, Groot, and Alcmestri among the heroes of the film was excellent. The music scene was great, especially Come And Get Your Love.",
+            "release_date": "2014-08-01",
+            "watched": true
+        }
+    }
+]

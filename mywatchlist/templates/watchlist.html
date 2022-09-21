@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<h1>Tugas 3 PBP</h1>
+
+<h5>Name:</h5>
+<p id="name">{{name}}</p>
+
+<h5>Student ID:</h5>
+<p id="student-id">{{student_id}}</p>
+
+<table id="watch-list-items">
+  <tr>
+    <th>Title</th>
+    <th>Rating</th>
+    <th>Review</th>
+    <th>Release Date</th>
+    <th>Watched</th>
+  </tr>
+  {% for watch_list in watch_list_items %}
+  <tr>
+    <td>{{watch_list.title}}</td>
+    <td>{{watch_list.rating}}</td>
+    <td>{{watch_list.review}}</td>
+    <td>{{watch_list.release_date}}</td>
+    <td>
+      {% if watch_list.watched %}
+          Yes
+      {% else %}
+          No
+      {% endif %}
+    </td>
+</tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}
