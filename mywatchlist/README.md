@@ -35,20 +35,20 @@
 # POSTMAN SCREENSHOT
 
 1. `/mywatchlist`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist.png?raw=true)
 
 2. `/mywatchlist/html`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-html.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist-html.png?raw=true)
 
 3. `/mywatchlist/json`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-json.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist-json.png?raw=true)
    
 4. `/mywatchlist/json/6`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-json-6.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist-json-6.png?raw=true)
    
 5. `/mywatchlist/xml`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-xml.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist-xml.png?raw=true)
    
 6. `/mywatchlist/xml/9`
-   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-xml-9.png?raw=true)
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist/mywatchlist-xml-9.png?raw=true)
    
