@@ -4,6 +4,8 @@
 
 ## NPM : 2106702485
 
+# QUESTIONS
+
 1. **Explain the difference between JSON, XML, and HTML!**  
    
    - **JSON**, JavaScript Object Notation is a standard data transfer format that is based on Javascript object syntax. It is exist as a string and must be parsed to native Javascript object to access the data. Hence, JSON provide an easy way to parse its data. Although, JSON is based on JavaScript, it is used independently as `.json` file and can be used universally.
@@ -29,3 +31,24 @@
    Almost the last, I develop the views logic for each URLs that I registered. But, for `mywatchlist/` and `mywatchlist/html`, I used the same views logic because they're supposed to respond with the same data.
 
    Lastly, I deployed the apps, but I did a bit modifications on the `Procfile`'s `release` job. Instead of making it to load only a specific app's fixtures, I make it to load all the fixtures in the project. So, when in the future I have to add a new fixture, I don't have to modify the `Procfile` each time I want to deploy.
+
+# POSTMAN SCREENSHOT
+
+1. `/mywatchlist`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist.png?raw=true)
+
+2. `/mywatchlist/html`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-html.png?raw=true)
+
+3. `/mywatchlist/json`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-json.png?raw=true)
+   
+4. `/mywatchlist/json/6`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-json-6.png?raw=true)
+   
+5. `/mywatchlist/xml`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-xml.png?raw=true)
+   
+6. `/mywatchlist/xml/9`
+   ![/mywatchlist](https://github.com/DJaegerScript/pbp-assignments/blob/main/mywatchlist-xml-9.png?raw=true)
+   

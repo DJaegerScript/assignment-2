@@ -6,7 +6,7 @@
 
 1. **Create a diagram containing client request to the Django web application and its response. Also explain the flow of the diagram and how the `urls.py`, `views.py`, `models.py` and HTML files connected each other.**  
    
-   ![MVT Diagram](https://github.com/DJaegerScript/assignment-2/blob/main/image.png?raw=true)
+   ![MVT Diagram](https://github.com/DJaegerScript/pbp-assignments/blob/main/image.png?raw=true)
 
    Client-side/user will send a `GET` HTTP request to the server. The server, using `urls.py`, will map the request to the controller (views) according to the specified URL. The controller defined in `views.py` will render the HTML file on the server along with the data needed. The data that are rendered into HTML is retrieved from a database that is represented by `models.py`. Lastly, the server will send the response in the form of HTML.
    
