@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>To Do List</h1>
+
+<h5>Name:</h5>
+<p id="name">{{name}}</p>
+
+<button><a href="{% url 'todolist:create_todolist' %}">Add Task</a></button>
+
+<table id="task-items">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Created At</th>
+  </tr>
+  {% for task in task_items %}
+  <tr>
+    <td>{{task.title}}</td>
+    <td>{{task.description}}</td>
+    <td>{{task.date}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<button><a href="{% url 'todolist:logout_todolist' %}">Logout</a></button>
+
+{% endblock content %}
