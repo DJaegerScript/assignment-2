@@ -12,12 +12,27 @@
     <th>Title</th>
     <th>Description</th>
     <th>Created At</th>
+    <th>Status</th>
   </tr>
   {% for task in task_items %}
   <tr>
     <td>{{task.title}}</td>
     <td>{{task.description}}</td>
     <td>{{task.date}}</td>
+    <td>
+      <form method="POST" action="{% url 'todolist:update_todolist' task.id %}">
+        {% csrf_token %}
+        <button type="submit">
+          {% if task.is_finished %} Finished {% else %} Not Finished {% endif %}
+        </button>
+      </form>
+    </td>
+    <td>
+      <form method="POST" action="{% url 'todolist:delete_todolist' task.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+      </form>
+    </td>
   </tr>
   {% endfor %}
 </table>

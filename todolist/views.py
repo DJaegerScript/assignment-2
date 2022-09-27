@@ -55,15 +55,25 @@ def logout_todolist(request):
     response.delete_cookie('last_login')
     return response
 
-def create_todolist(request):
+def create_todolist(request, id = 0):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        description = request.POST.get('description')
-        user = request.user
-        date = datetime.datetime.now()
-        task = TaskItem(title=title, description=description, user=user, date=date)
-        task.save()
+        if id != 0:
+            task_instance = TaskItem.objects.get(pk=id)
+            task_instance.is_finished = not task_instance.is_finished
+        else:
+            title = request.POST.get('title')
+            description = request.POST.get('description')
+            user = request.user
+            date = datetime.datetime.now()
+            task_instance = TaskItem(title=title, description=description, user=user, date=date)
+        task_instance.save()
         return HttpResponseRedirect(reverse("todolist:show_todolist"))
     
     context = {}
     return render(request, 'create_todolist.html', context)
+
+def delete_todolist(request, id):
+    task_instance = TaskItem.objects.get(pk=id)
+    task_instance.delete()
+    return HttpResponseRedirect(reverse("todolist:show_todolist"))
+

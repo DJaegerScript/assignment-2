@@ -6,3 +6,4 @@ class TaskItem(models.Model):
     date = models.DateField(auto_now_add=True)
     title = models.TextField()
     description = models.TextField()
+    is_finished = models.BooleanField(default=False)
