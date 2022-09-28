@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from todolist.Form import TodoListForm
 
 from todolist.models import TaskItem
 
@@ -61,15 +62,17 @@ def create_todolist(request, id = 0):
             task_instance = TaskItem.objects.get(pk=id)
             task_instance.is_finished = not task_instance.is_finished
         else:
-            title = request.POST.get('title')
-            description = request.POST.get('description')
-            user = request.user
-            date = datetime.datetime.now()
-            task_instance = TaskItem(title=title, description=description, user=user, date=date)
+            form = TodoListForm(request.POST)
+            if form.is_valid():
+                title = form.cleaned_data['title']
+                description = form.cleaned_data['description']
+                user = request.user
+                date = datetime.datetime.now()
+                task_instance = TaskItem(title=title, description=description, user=user, date=date)
         task_instance.save()
         return HttpResponseRedirect(reverse("todolist:show_todolist"))
     
-    context = {}
+    context = { 'form': TodoListForm() }
     return render(request, 'create_todolist.html', context)
 
 def delete_todolist(request, id):
