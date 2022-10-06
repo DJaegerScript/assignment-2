@@ -1,8 +1,10 @@
-# [Assignment 4: Implementing Forms and Authentication Using Django](https://pbp-assigments-adjie.herokuapp.com/todolist)
+# Assignment 4 & Assignment 5
 
 ## Name : Adjie Djaka Permana
 
 ## NPM : 2106702485
+
+### [Assignment 4: Implementing Forms and Authentication Using Django](https://pbp-assigments-adjie.herokuapp.com/todolist)
 
 1. **What does `{% csrf_token %}` do in the `<form>` element? What happens if there is no such "code snippet" in the `<form>` element?**
 
@@ -27,3 +29,29 @@
    First, I create a new Django app named `todolist`, register the app and the url, create the migration model, and the index view that will show the data in the form of the table. After that, I implements the Django auth like register, login, and logout. Then, the main effort is when I create the logic to insert the data into database.
 
    When I create the logic to insert the data, first, I create a new template to display the form based on the data from the model along with its corresponding handler that is defined in `views.py`. Handler that I create is consist of two conditions, the first is to handle the `GET` method that will respond the request with the HTML form and the second is to handle the `POST` method that will process the request to insert it into the database and redirect the request to the index of `todolist`. Last, I configure the handler of the index to display the data that based on the current authenticated user id.
+
+### [Assignment 5: Web Design Using HTML, CSS, and CSS Framework](https://pbp-assigments-adjie.herokuapp.com/todolist)
+
+1. **What is the difference between Inline, Internal, and External CSS? What are the advantages and disadvantages of each style?**
+
+   **Inline CSS**, is a method of writing a CSS style immediately in the specified HTML Tag. The advantage is that the style is more specific for a certain component. But, it will make the line of code more verbose and less reusable.
+
+   **Internal CSS**, is a CSS style that is declared in the `<head>` of HTML elements. With this method, developers can maximize the utilization of CSS like using the CSS Selector. But, the drawback is the loading time of the page will increase along with the increase of CSS styling rules.
+
+   **External CSS**, is a way to write a CSS style in the dedicated `.css` file and linked it with the HTML documents. Since the CSS code is separated, HTML documents will have a cleaner structure and smaller size, and be more reusable. But, the HTML page will not render correctly until the CSS is loaded.
+
+2. **Describe the HTML5 tags that you know!**
+
+   One of the most used tag in HTML that I know is `<div>` tag. It's defines a division in an HTML document and usually used as a container or wrapper for HTML elements. But, developer should not always use this tag in every cases, because it will have a bad impact to the SEO.
+
+3. **Describe the types of CSS selectors you know!**
+
+   The most used CSS selector that I know is `.` (class selector). It is commonly used because CSS is usually injected via HTML `class` attribute.
+
+4. **Explain how you would implement the checklist above!**
+
+   First, I will initiate the framework that I would like to use. This time, I chose Tailwind CSS, because it is a utility-first CSS framework and it allows me to have more control over the framework. To install it on Django, I follow this [tutorial]("https://django-tailwind.readthedocs.io/en/latest/installation.html").
+
+   Then, I start implementing the design from the login and registration page. After that, I start to implement the navbar for the authenticated user. And for the main objective, I start to change the data distribution from table to card. Finally, for the complimentary, I styled the `create-task` page.
+
+   Lastly, I do some configuration for deployment and then push it to Github to be deployed. For the configuration, I just followed this [article](https://medium.com/@phuitsing/heroku-buildpack-for-django-tailwind-de96be543f9).
