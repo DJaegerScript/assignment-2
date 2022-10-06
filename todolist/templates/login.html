@@ -2,51 +2,54 @@
 <title>Login</title>
 {% endblock meta %} {% block content %}
 
-<div class="login">
-  <h1>Login</h1>
-
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>Username:</td>
-        <td>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            class="form-control"
-          />
-        </td>
-      </tr>
-
-      <tr>
-        <td>Password:</td>
-        <td>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            class="form-control"
-          />
-        </td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
-
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account?
-  <a href="{% url 'todolist:register_todolist' %}">Create Account</a>
+<div class="flex items-center justify-center w-full h-screen">
+  <div class="flex flex-col items-center gap-6">
+    <h1 class="text-6xl font-bold text-white">Login</h1>
+    <form
+      action=""
+      method="POST"
+      class="flex flex-col items-center gap-4 p-6 bg-white shadow-2xl rounded-2xl"
+    >
+      {% csrf_token %}
+      <div class="flex flex-col w-full">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="John Doe"
+          class="w-full rounded-lg"
+          required
+        />
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          class="w-full rounded-lg"
+          required
+        />
+      </div>
+      <button
+        class="w-full py-2 text-lg font-bold text-white bg-orange-600 rounded-lg hover:bg-orange-800"
+      >
+        Login
+      </button>
+      {% if messages %} {% for message in messages %}
+      <span class="font-bold text-red-600">{{ message }}</span>
+      {% endfor %} {% endif %}
+      <span class="flex flex-col items-center w-full">
+        Don't have an account?
+        <a
+          href="{% url 'todolist:register_todolist' %}"
+          class="text-blue-600 hover:text-blue-800"
+          >Create Account</a
+        >
+      </span>
+    </form>
+  </div>
 </div>
 
 {% endblock content %}

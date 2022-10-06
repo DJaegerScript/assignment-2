@@ -16,7 +16,6 @@ from todolist.models import TaskItem
 def show_todolist(request):
     task_items = TaskItem.objects.filter(user=request.user)
     context = {
-        'name': request.user,
         'task_items': task_items,
     }
     

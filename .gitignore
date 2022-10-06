@@ -79,3 +79,5 @@ $RECYCLE.BIN/
 
 # Logs
 geckodriver.log
+
+**/dist/styles.css

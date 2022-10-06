@@ -1,42 +1,11 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
 
-<h1>To Do List</h1>
-
-<h5>Name:</h5>
-<p id="name">{{name}}</p>
-
-<button><a href="{% url 'todolist:create_todolist' %}">Add Task</a></button>
-
-<table id="task-items">
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Created At</th>
-    <th>Status</th>
-  </tr>
-  {% for task in task_items %}
-  <tr>
-    <td>{{task.title}}</td>
-    <td>{{task.description}}</td>
-    <td>{{task.date}}</td>
-    <td>
-      <form method="POST" action="{% url 'todolist:update_todolist' task.id %}">
-        {% csrf_token %}
-        <button type="submit">
-          {% if task.is_finished %} Finished {% else %} Not Finished {% endif %}
-        </button>
-      </form>
-    </td>
-    <td>
-      <form method="POST" action="{% url 'todolist:delete_todolist' task.id %}">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-      </form>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
-
-<button><a href="{% url 'todolist:logout_todolist' %}">Logout</a></button>
-
+{% block content %} 
+  <div class="w-full px-4 py-20">
+    <div class="flex flex-col gap-4">
+      {% for task in task_items %}
+        {% include "components/task_card.html" with task_id=task.id title=task.title description=task.description date=task.date is_finished=task.is_finished %} 
+      {% endfor %}
+    </div>
+  </div> 
 {% endblock content %}

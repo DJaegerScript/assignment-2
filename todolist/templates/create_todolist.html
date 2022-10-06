@@ -2,27 +2,34 @@
 <title>Create Task</title>
 {% endblock meta %} {% block content %}
 
-<div class="login">
-  <h1>Create Task</h1>
-
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input type="submit" name="submit" value="Submit" /></td>
-      </tr>
-    </table>
-  </form>
-
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+<div class="flex items-center justify-center w-full h-screen">
+  <div class="flex flex-col items-center w-1/4 gap-6">
+    <h1 class="text-6xl font-bold text-white">Create Task</h1>
+    <form
+      action=""
+      method="POST"
+      class="flex flex-col items-center w-full gap-4 p-6 bg-white shadow-2xl rounded-2xl"
+    >
+      {% csrf_token %}
+      <div class="flex flex-col w-full">
+        <label for="id_title">Title</label>
+        {{form.title}} {% if form.title.errors %}
+        <span class="font-bold text-red-600">{{ form.title.errors }}</span>
+        {% endif %}
+      </div>
+      <div class="flex flex-col w-full">
+        <label for="id_description">Description</label>
+        {{form.description}} {% if form.description.errors %}
+        <span class="font-bold text-red-600">{{ form.description.errors }}</span>
+        {% endif %}
+      </div>
+      <button
+        class="w-full py-2 text-lg font-bold text-white bg-orange-600 rounded-lg hover:bg-orange-800"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
 </div>
 
 {% endblock content %}
