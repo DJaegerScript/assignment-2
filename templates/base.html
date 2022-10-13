@@ -9,6 +9,8 @@
   </head>
 
   <body class="relative bg-blue-400">
+
+
     {% if user.is_authenticated %}
     <nav class="fixed flex items-center justify-between w-full px-6 py-2 bg-white">
       <a
@@ -19,12 +21,19 @@
       </a>
 
       <div class="flex gap-2">
-        {% if not request.path == "/todolist/task" %}
+        {% if not request.path == "/todolist/task" and not request.path == "/todolist/ajax-index" %}
         <a
           href="{% url 'todolist:create_todolist' %}"
           class="px-4 py-2 font-bold text-white bg-orange-600 rounded-xl hover:bg-orange-800"
           >Add Task</a
-        >{% endif %}
+        >
+        {% elif request.path == "/todolist/ajax-index" %}
+        <button
+          id="button-modal"
+          class="px-4 py-2 font-bold text-white bg-orange-600 rounded-xl hover:bg-orange-800"
+          >Add Task</button
+        >
+        {% endif %}
         <a
           href="{% url 'todolist:logout_todolist' %}"
           class="px-4 py-2 font-bold text-white bg-red-600 rounded-xl hover:bg-red-800"
@@ -32,6 +41,162 @@
         >
       </div>
     </nav>
-    {% endif %} {% block content %} {% endblock content %}
+    {% endif %} 
+    
+    {% block content %} 
+    {% endblock content %}
+    
+    <div id="modal" class="absolute top-0 items-center justify-center hidden w-full h-screen bg-black/50">
+      
+    </div>
+
+    {% block script %}
+    {% endblock script %}
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        if (window.location.pathname === "/todolist/ajax-index") {
+          const modal = document.getElementById("modal")
+          const buttonModal = document.getElementById("button-modal")
+          let closeButton
+          let createForm
+          let deleteButton
+
+          function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+          }
+
+          const refresh = async () => {
+            const response = await fetch("{% url 'todolist:get_task' %}")
+            const data = await response.json()
+
+            const cardContainer = document.getElementById("card-container")
+            cardContainer.innerHTML = ""
+
+            data.map(({pk, fields: {date, title, description, is_finished}}) => {
+              const components = `
+              <div class="flex items-center w-full gap-4">
+                <button
+                    data-id="${pk}"
+                    class="flex items-center justify-between w-full px-4 py-2 bg-white rounded-full update-button hover:bg-slate-300"
+                  >
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="px-4 py-2 font-semibold text-white rounded-full  ${is_finished ? "bg-green-600" : "bg-red-600"}"
+                      >
+                        ${is_finished ? "Done" : "To Do"}
+                      </div>
+                      <div class="flex items-center gap-4">
+                        <span class="text-2xl font-bold">${title}</span>
+                        <span class="font-semibold">${description}</span>
+                      </div>
+                    </div>
+                    <span class="font-semibold">${date}</span>
+                  </button>
+                <div
+                  class="flex items-center justify-center px-6 py-2 bg-red-600 rounded-full"
+                >
+                  <button data-id="${pk}" class="text-lg font-bold text-white delete-button">Delete</button>
+                </div>
+              </div>`
+              
+              cardContainer.innerHTML += components
+
+              
+            })
+
+            const deleteButtons = document.querySelectorAll(".delete-button")
+
+            for (let i = 0; i < deleteButtons.length; i++ ) {
+              deleteButtons[i].addEventListener("click", async () => {
+                await fetch(`/todolist/destroy-task/${deleteButtons[i].dataset.id}`, {
+                  method: 'DELETE',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie("csrftoken"),
+                  },
+                })
+                refresh()
+              })
+            }
+
+            const updateButton = document.querySelectorAll(".update-button")
+
+            for (let i = 0; i < updateButton.length; i++ ) {
+              updateButton[i].addEventListener("click", async () => {
+                await fetch(`/todolist/update-task/${updateButton[i].dataset.id}`, {
+                  method: 'PATCH',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie("csrftoken"),
+                  },
+                })
+                refresh()
+              })
+            }
+          }
+
+          const closeModal = () => {
+            modal.classList.add("hidden")
+            modal.classList.remove("flex")
+          }
+
+          const storeData = async (event) => {
+            event.preventDefault();
+
+            const formData = {
+              title: document.getElementById("id_title").value,
+              description: document.getElementById("id_description").value,
+            };
+
+            const response = await fetch("{% url 'todolist:create_task' %}", {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie("csrftoken"),
+              },
+              body: JSON.stringify(formData),
+            })
+
+            refresh()
+            closeModal()
+          }
+
+          buttonModal.addEventListener("click", async () => {
+            modal.classList.remove("hidden")
+            modal.classList.add("flex")
+
+            const response = await fetch("{% url 'todolist:create_task' %}")
+            const data = await response.text()
+            
+            modal.innerHTML = data
+
+            closeButton = document.getElementById("close-button")
+            closeButton.addEventListener("click", closeModal)
+
+            createForm = document.getElementById("create-task")
+            createForm.addEventListener("submit", storeData)
+
+            
+          })
+
+          refresh()
+        }
+      })
+    </script>
   </body>
 </html>

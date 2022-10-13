@@ -1,13 +1,15 @@
 import datetime
+import json
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from todolist.Form import TodoListForm
+from django.core import serializers
 
 from todolist.models import TaskItem
 
@@ -79,3 +81,56 @@ def delete_todolist(request, id):
     task_instance.delete()
     return HttpResponseRedirect(reverse("todolist:show_todolist"))
 
+@login_required(login_url='/todolist/login')
+def todolist(request):
+    return render(request, "todolist_index.html")
+
+def get_task(request):
+    task_items = TaskItem.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', task_items))
+
+def create_task(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode("utf-8"))
+        
+        title = data.get('title')
+        description = data.get('description')
+        user = request.user
+        date = datetime.datetime.now()
+        
+        task_instance = TaskItem(title=title, description=description, user=user, date=date)
+        task_instance.save()
+        
+        data = {
+            "message": 'Successfully submitted'
+        }
+        
+        json_object = json.dumps(data, indent = 4) 
+
+        return JsonResponse(json.loads(json_object))
+    
+    context = { 'form': TodoListForm() }
+    return render(request, 'todolist_store.html', context)
+
+def destroy_task(request, id):
+    task_instance = TaskItem.objects.get(pk=id)
+    task_instance.delete()
+    data = {
+        "message": 'Successfully deleted'
+    }
+        
+    json_object = json.dumps(data, indent = 4) 
+
+    return JsonResponse(json.loads(json_object))
+
+def update_task(request, id):
+    task_instance = TaskItem.objects.get(pk=id)
+    task_instance.is_finished = not task_instance.is_finished
+    task_instance.save()
+    data = {
+        "message": 'Successfully updated'
+    }
+        
+    json_object = json.dumps(data, indent = 4) 
+
+    return JsonResponse(json.loads(json_object))
